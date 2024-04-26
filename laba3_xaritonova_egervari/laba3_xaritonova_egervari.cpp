@@ -52,6 +52,20 @@ void hungarian_algorithm(const vector<vector<int>>& original_cost) {
     size_t n = original_cost.size();
     size_t m = original_cost[0].size();
     vector<vector<int>> cost = original_cost;
+
+    // Subtract the maximum element from each element of the matrix
+    int max_element = numeric_limits<int>::min();
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < m; ++j) {
+            max_element = max(max_element, cost[i][j]);
+        }
+    }
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < m; ++j) {
+            cost[i][j] = max_element - cost[i][j];
+        }
+    }
+
     // row and column conversion
     subtract_min_from_rows(cost);
     subtract_min_from_cols(cost);
