@@ -105,3 +105,4 @@ int main() {
     hungarian_algorithm(cost);
     return 0;
 }
+
